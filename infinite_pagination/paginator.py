@@ -17,7 +17,10 @@ class InfinitePaginator(Paginator):
                  allow_empty_first_page=True):
         super(InfinitePaginator, self).__init__(object_list, per_page,
             orphans=0, allow_empty_first_page=allow_empty_first_page)
-        del self._num_pages, self._count
+        if hasattr(self, '_num_pages'):
+            del self._num_pages
+        if hasattr(self, '_count'):
+            del self._count
 
     def validate_number(self, number):
         """Validates the given 1-based page number."""
