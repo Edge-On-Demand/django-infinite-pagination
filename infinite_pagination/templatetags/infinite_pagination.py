@@ -1,6 +1,3 @@
-#-*- coding: utf-8 -*-
-
-from __future__ import absolute_import
 import copy
 
 from django.core.paginator import InvalidPage
@@ -10,11 +7,13 @@ from django.utils.translation import ugettext as _
 
 from ..paginator import InfinitePaginator
 
+
 register = Library()
 
 PAGE_VAR = "page"
 
-@register.assignment_tag(takes_context=True)
+
+@register.simple_tag(takes_context=True)
 def autopaginate(context, object_list, per_page=15, page=None):
     """
     Takes a queryset and returns page slice.
